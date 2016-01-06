@@ -47,6 +47,11 @@ public class ViewAdapter extends BaseAdapter {
         int col = position % 9;
         Log.d(Sudoku.TAG, "Setting text from position: " + row + "," + col);
         button.setText(String.valueOf(mSudoku[row][col]));
+        try {
+            Thread.sleep(200);
+        } catch (Exception e) {
+
+        }
         return button;
     }
 

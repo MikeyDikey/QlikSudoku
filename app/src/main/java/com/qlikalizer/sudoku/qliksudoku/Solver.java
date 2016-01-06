@@ -9,7 +9,7 @@ public class Solver {
 
     private static int mCurrentTriedNumber = 1;
 
-    private static final String WRONG_DIMONESIONS_ERROR =
+    private static final String WRONG_DIMENSIONS_ERROR =
             "The Sudoku supplied has dimensions larger than 9x9";
 
     static char[][] solveSudoku(char[][] sudoku) {
@@ -45,6 +45,33 @@ public class Solver {
         return solution;
     }
 
+    public static boolean solve(char[][] sudoku) {
+
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (isNumberOneToNineChar(sudoku[row][col])) {
+                    continue;
+                }
+                for (char c = '1'; c <= '9'; c++) {
+                    if (allowedInCol(sudoku, col, c) && allowedInRow(sudoku, row, c) &&
+                            allowedInSquare(sudoku, row, col, c)) {
+                        sudoku[row][col] = c;
+
+                        if (solve(sudoku)) {
+                            return true;
+                        } else {
+                            sudoku[row][col] = '.';
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
     static boolean allowedInRow(char[][] sudoku, final int row, char value) {
         for (int col = 0; col < 9; col++) {
             if (sudoku[row][col] == value) {
@@ -70,6 +97,7 @@ public class Solver {
     static boolean allowedInSquare(char[][] sudoku, final int row, final int col, char value) {
         boolean allowed = true;
         int quadrant = calculateQuadrant(row, col);
+        //TODO: Use / and % for less code below
         switch (quadrant) {
             case 0:
                 for (int r = 0; r < 3; r++) {
@@ -170,7 +198,7 @@ public class Solver {
             } else if (col < 9) {
                 quadrant = 2;
             } else {
-                throw new IllegalArgumentException(WRONG_DIMONESIONS_ERROR);
+                throw new IllegalArgumentException(WRONG_DIMENSIONS_ERROR);
             }
         } else if (row < 6) {
             if (col < 3) {
@@ -180,7 +208,7 @@ public class Solver {
             } else if (col < 9) {
                 quadrant = 5;
             } else {
-                throw new IllegalArgumentException(WRONG_DIMONESIONS_ERROR);
+                throw new IllegalArgumentException(WRONG_DIMENSIONS_ERROR);
             }
         } else if (row < 9) {
             if (col < 3) {
@@ -190,13 +218,28 @@ public class Solver {
             } else if (col < 9) {
                 quadrant = 8;
             } else {
-                throw new IllegalArgumentException(WRONG_DIMONESIONS_ERROR);
+                throw new IllegalArgumentException(WRONG_DIMENSIONS_ERROR);
             }
         } else {
-            throw new IllegalArgumentException(WRONG_DIMONESIONS_ERROR);
+            throw new IllegalArgumentException(WRONG_DIMENSIONS_ERROR);
         }
-        Log.d(Sudoku.TAG, "Caluclated quadrant: " + quadrant);
+        Log.d(Sudoku.TAG, "Calculated quadrant: " + quadrant);
         return quadrant;
+    }
+
+    static boolean isSolved(char[][] sudoku){
+        for(int row = 0; row<9; row++){
+            for(int col = 0; col<9; col++){
+                if(!isNumberOneToNineChar(sudoku[row][col])){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    static private boolean isNumberOneToNineChar(char c) {
+        return c >= '1' && c <= '9';
     }
 
 }

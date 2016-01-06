@@ -35,7 +35,9 @@ public class Sudoku extends AppCompatActivity {
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ViewAdapter(this, mSudokuMatrix));
 
-        String solvedSudoku = FileReader.printSudoku(Solver.solveSudoku(mSudokuMatrix));
+        Solver.solve(mSudokuMatrix);
+        String solvedSudoku = FileReader.printSudoku(mSudokuMatrix);
+        //String solvedSudoku = FileReader.printSudoku(Solver.solveSudoku(mSudokuMatrix));
         mSolvedSudokuTextView.setText(solvedSudoku);
     }
 }
