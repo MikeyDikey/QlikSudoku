@@ -1,16 +1,12 @@
 package view;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.TextView;
 
-import com.qlikalizer.sudoku.qliksudoku.R;
 import com.qlikalizer.sudoku.qliksudoku.Sudoku;
 
 /**
@@ -39,23 +35,6 @@ public class ViewAdapter extends BaseAdapter {
 
     // create a new TextView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        /*
-        TextView textView;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            textView = new TextView(mContext);
-
-            int widh_height = 60;
-            textView.setLayoutParams(new GridView.LayoutParams(widh_height, widh_height));
-
-            int padding = 6;
-            textView.setPadding(padding, padding, padding, padding);
-        } else {
-            textView = (TextView) convertView;
-        }
-         */
-
-        //TRy with a button instead
         Button button;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes

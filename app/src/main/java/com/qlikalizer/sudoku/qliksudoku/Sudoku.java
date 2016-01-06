@@ -1,16 +1,12 @@
 package com.qlikalizer.sudoku.qliksudoku;
 
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -22,10 +18,7 @@ public class Sudoku extends AppCompatActivity {
 
     private char[][] mSudokuMatrix = new char[9][9];
 
-    /** The view */
     protected Button view[][] ;
-
-    private GridLayout mGridLayout;
 
     private TextView mUnsolvedSudokuTextView;
     private TextView mSolvedSudokuTextView;
@@ -37,7 +30,7 @@ public class Sudoku extends AppCompatActivity {
 
         mUnsolvedSudokuTextView = (TextView) findViewById(R.id.readSudokuTextView);
         mSolvedSudokuTextView = (TextView) findViewById(R.id.solvedSudokuTextView);
-        //mGrid = (GridLayout) getResources().getLayout(R.id.grid);
+
         mSudokuMatrix = readFromFile();
         //Log.d(TAG, mSudokuMatrix.toString());
         String sudokuString = printSudoku(mSudokuMatrix);
@@ -54,9 +47,7 @@ public class Sudoku extends AppCompatActivity {
 
     private char[][] readFromFile() {
         char[][] sudokuMatrix = new char[9][9];
-        BufferedReader reader;
-        InputStream is = null;
-        AssetManager am = this.getAssets();
+        InputStream is;
 
         is  = this.getResources().openRawResource(R.raw.easy);
 
