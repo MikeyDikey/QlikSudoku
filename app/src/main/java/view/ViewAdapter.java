@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class ViewAdapter extends BaseAdapter {
 
     // create a new TextView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        /*
         TextView textView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
@@ -51,13 +53,22 @@ public class ViewAdapter extends BaseAdapter {
         } else {
             textView = (TextView) convertView;
         }
+         */
 
-        //textView.setText("Insert value from the sudoku matrix");
+        //TRy with a button instead
+        Button button;
+        if (convertView == null) {
+            // if it's not recycled, initialize some attributes
+            button = new Button(mContext);
+        } else {
+            button = (Button) convertView;
+        }
+
         int row = position / 9;
         int col = position % 9;
         Log.d(Sudoku.TAG, "Setting text from position: " + row + "," + col);
-        textView.setText(String.valueOf(mSudoku[row][col]));
-        return textView;
+        button.setText(String.valueOf(mSudoku[row][col]));
+        return button;
     }
 
 }
