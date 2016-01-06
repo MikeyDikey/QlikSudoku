@@ -34,22 +34,22 @@ public class Sudoku extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
-        RelativeLayout r = (RelativeLayout) findViewById(R.id.relativeLayout);
-        r.setVerticalScrollBarEnabled(true);
-
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ViewAdapter(this));
 
         mUnsolvedSudokuTextView = (TextView) findViewById(R.id.readSudokuTextView);
         mSolvedSudokuTextView = (TextView) findViewById(R.id.solvedSudokuTextView);
         //mGrid = (GridLayout) getResources().getLayout(R.id.grid);
         mSudokuMatrix = readFromFile();
-        Log.d(TAG, mSudokuMatrix.toString());
+        //Log.d(TAG, mSudokuMatrix.toString());
         String sudokuString = printSudoku(mSudokuMatrix);
         mUnsolvedSudokuTextView.setText(sudokuString);
 
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ViewAdapter(this, mSudokuMatrix));
+
         String solvedSudoku = printSudoku(Solver.solveSudoku(mSudokuMatrix));
         mSolvedSudokuTextView.setText(solvedSudoku);
+
+
     }
 
     private char[][] readFromFile() {
