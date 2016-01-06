@@ -80,22 +80,22 @@ public class Solver {
     static boolean allowedInRow(char[][] sudoku, final int row, char value) {
         for (int col = 0; col < 9; col++) {
             if (sudoku[row][col] == value) {
-                Log.d(Sudoku.TAG, value + " allowedInRow: false");
+                //Log.d(Sudoku.TAG, value + " allowedInRow: false");
                 return false;
             }
         }
-        Log.d(Sudoku.TAG, value + " allowedInRow: true");
+        //Log.d(Sudoku.TAG, value + " allowedInRow: true");
         return true;
     }
 
     static boolean allowedInCol(char[][] sudoku, final int col, char value) {
         for (int row = 0; row < 9; row++) {
             if (sudoku[row][col] == value) {
-                Log.d(Sudoku.TAG, value + " allowedInCol: false");
+                //Log.d(Sudoku.TAG, value + " allowedInCol: false");
                 return false;
             }
         }
-        Log.d(Sudoku.TAG, value + " allowedInCol: true");
+        //Log.d(Sudoku.TAG, value + " allowedInCol: true");
         return true;
     }
 
@@ -188,7 +188,7 @@ public class Solver {
             default:
                 Log.e(Sudoku.TAG, "Error: Quadrant not valid: " + quadrant);
         }
-        Log.d(Sudoku.TAG, value + " allowedInSquare: " + allowed);
+        //Log.d(Sudoku.TAG, value + " allowedInSquare: " + allowed);
         return allowed;
     }
 

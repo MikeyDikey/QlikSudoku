@@ -14,7 +14,7 @@ import com.qlikalizer.sudoku.qliksudoku.Sudoku;
  */
 public class ViewAdapter extends BaseAdapter {
     private Context mContext;
-    private char[][] mSudoku  = new char[9][9];
+    private char[][] mSudoku;
 
     public ViewAdapter(Context c, char[][] sudoku) {
         mSudoku = sudoku;
@@ -45,9 +45,13 @@ public class ViewAdapter extends BaseAdapter {
 
         int row = position / 9;
         int col = position % 9;
-        Log.d(Sudoku.TAG, "Setting text from position: " + row + "," + col);
+        //Log.d(Sudoku.TAG, "Setting text from position: " + row + "," + col);
         button.setText(String.valueOf(mSudoku[row][col]));
         return button;
+    }
+
+    public void setSudoku(char[][] sudoku) {
+        mSudoku = sudoku;
     }
 
 }

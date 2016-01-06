@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/readme"
+        android:title="Readme" >
+    </item>
+    <item android:id="@+id/load_sudoku"
+        android:title="Load Sudoku" >
+        <menu>
+            <item android:id="@+id/load_easy"
+                android:title="Load Easy" />
+            <item android:id="@+id/load_medium"
+                android:title="Load Medium" />
+        </menu>
+    </item>
+</menu>

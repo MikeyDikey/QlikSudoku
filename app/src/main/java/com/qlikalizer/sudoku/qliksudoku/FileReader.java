@@ -1,7 +1,9 @@
 package com.qlikalizer.sudoku.qliksudoku;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,14 +19,18 @@ public class FileReader {
         mContext = c;
     }
 
-    static char[][] readFromFile(Context context) {
+    static char[][] readFromFile(Context context, int resourceId) {
         char[][] sudokuMatrix = new char[9][9];
         InputStream is;
 
         //is  = context.getResources().openRawResource(R.raw.easy);
-        is  = context.getResources().openRawResource(R.raw.medium);
+        try {
+            is  = context.getResources().openRawResource(resourceId);
+        } catch (Resources.NotFoundException e) {
+            Toast.makeText(context, "File could not be found", Toast.LENGTH_SHORT).show();
+            return null;
+        }
 
-        char ch;
         for (int k = 0; k < 9; k++) {
             for (int i = 0; i < 9; i++) {
                 sudokuMatrix[k][i] = getNextValidCharacter(is);
@@ -34,7 +40,7 @@ public class FileReader {
     }
 
     private static char getNextValidCharacter(InputStream is) {
-        Log.d(Sudoku.TAG, "getNextValidCharacter");
+        //Log.d(Sudoku.TAG, "getNextValidCharacter");
         char ch;
 
         try {
