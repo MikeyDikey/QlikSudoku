@@ -16,37 +16,6 @@
         android:text="Unsolved Sudoku"
         android:id="@+id/readSudokuTitleTextView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sudoku read from file:"
-        android:textSize="7sp"
-        android:id="@+id/readSudokuTextView"
-        android:layout_below="@+id/readSudokuTitleTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Solved Sudoku"
-        android:id="@+id/solvedSudokuTitleTextView"
-        android:gravity="end"
-        android:layout_above="@+id/readSudokuTextView"
-        android:layout_alignRight="@+id/gridview"
-        android:layout_alignEnd="@+id/gridview" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Solved Sudoku"
-        android:textSize="7sp"
-        android:id="@+id/solvedSudokuTextView"
-        android:gravity="end"
-        android:layout_below="@+id/solvedSudokuTitleTextView"
-        android:layout_alignRight="@+id/gridview"
-        android:layout_alignEnd="@+id/gridview" />
-
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridview"
         android:layout_below="@+id/solvedSudokuTextView"
@@ -54,5 +23,14 @@
         android:layout_height="wrap_content"
         android:numColumns="9"
         android:gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solve Sudoku"
+        android:id="@+id/solveSudokuButton"
+        android:layout_below="@+id/gridview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

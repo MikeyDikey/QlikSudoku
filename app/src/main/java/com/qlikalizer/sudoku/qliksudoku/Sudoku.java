@@ -2,9 +2,10 @@ package com.qlikalizer.sudoku.qliksudoku;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.qlikalizer.sudoku.view.ViewAdapter;
 
@@ -14,30 +15,41 @@ public class Sudoku extends AppCompatActivity {
 
     private char[][] mSudokuMatrix = new char[9][9];
 
-    protected Button view[][] ;
+    private Button mSolveSudokuButton;
 
-    private TextView mUnsolvedSudokuTextView;
-    private TextView mSolvedSudokuTextView;
+    interface DataChangedListener {
+        void onDataChanged();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
 
-        mUnsolvedSudokuTextView = (TextView) findViewById(R.id.readSudokuTextView);
-        mSolvedSudokuTextView = (TextView) findViewById(R.id.solvedSudokuTextView);
-
         mSudokuMatrix = FileReader.readFromFile(this);
-        //Log.d(TAG, mSudokuMatrix.toString());
-        String sudokuString = FileReader.printSudoku(mSudokuMatrix);
-        mUnsolvedSudokuTextView.setText(sudokuString);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ViewAdapter(this, mSudokuMatrix));
+        final GridView gridView = (GridView) findViewById(R.id.gridview);
+        final ViewAdapter viewAdapter = new ViewAdapter(this, mSudokuMatrix);
+        gridView.setAdapter(viewAdapter);
 
-        Solver.solve(mSudokuMatrix);
-        String solvedSudoku = FileReader.printSudoku(mSudokuMatrix);
-        //String solvedSudoku = FileReader.printSudoku(Solver.solveSudoku(mSudokuMatrix));
-        mSolvedSudokuTextView.setText(solvedSudoku);
+        final DataChangedListener dataChangeListener = new DataChangedListener() {
+            @Override
+            public void onDataChanged() {
+                Log.d(TAG, "onDataChanged");
+                viewAdapter.notifyDataSetChanged();
+                gridView.invalidateViews();
+                gridView.setAdapter(viewAdapter);
+            }
+        };
+
+        mSolveSudokuButton = (Button) findViewById(R.id.solveSudokuButton);
+        mSolveSudokuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Solve Sudoku Button onClick");
+                Solver.solve(mSudokuMatrix, dataChangeListener);
+            }
+        });
     }
 }

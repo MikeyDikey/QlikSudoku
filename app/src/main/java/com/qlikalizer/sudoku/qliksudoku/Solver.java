@@ -1,6 +1,9 @@
 package com.qlikalizer.sudoku.qliksudoku;
 
 import android.util.Log;
+import android.widget.GridView;
+
+import com.qlikalizer.sudoku.view.ViewAdapter;
 
 /**
  * Created by admin on 2016-01-03.
@@ -45,7 +48,7 @@ public class Solver {
         return solution;
     }
 
-    public static boolean solve(char[][] sudoku) {
+    public static boolean solve(char[][] sudoku, Sudoku.DataChangedListener dataChangeListener) {
 
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -56,11 +59,13 @@ public class Solver {
                     if (allowedInCol(sudoku, col, c) && allowedInRow(sudoku, row, c) &&
                             allowedInSquare(sudoku, row, col, c)) {
                         sudoku[row][col] = c;
+                        dataChangeListener.onDataChanged();
 
-                        if (solve(sudoku)) {
+                        if (solve(sudoku, dataChangeListener)) {
                             return true;
                         } else {
                             sudoku[row][col] = '.';
+                            dataChangeListener.onDataChanged();
                         }
                     }
                 }
