@@ -21,7 +21,8 @@ public class FileReader {
         char[][] sudokuMatrix = new char[9][9];
         InputStream is;
 
-        is  = context.getResources().openRawResource(R.raw.easy);
+        //is  = context.getResources().openRawResource(R.raw.easy);
+        is  = context.getResources().openRawResource(R.raw.medium);
 
         char ch;
         for (int k = 0; k < 9; k++) {
