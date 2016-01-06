@@ -1,4 +1,4 @@
-package view;
+package com.qlikalizer.sudoku.view;
 
 import android.content.Context;
 import android.util.Log;
