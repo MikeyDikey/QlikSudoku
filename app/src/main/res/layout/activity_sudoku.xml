@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relativeLayout"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,14 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Unsolved Sudoku"
-        android:id="@+id/readSudokuTitleTextView"
-        android:textAppearance="@android:color/primary_text_dark"
-        android:textSize="@dimen/abc_text_size_title_material" />
+        android:id="@+id/readSudokuTitleTextView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sudoku read from file:"
+        android:textSize="8sp"
         android:id="@+id/readSudokuTextView"
         android:layout_below="@+id/readSudokuTitleTextView"
         android:layout_alignParentLeft="true"
@@ -31,20 +31,29 @@
         android:layout_height="wrap_content"
         android:text="Solved Sudoku"
         android:id="@+id/solvedSudokuTitleTextView"
-        android:layout_below="@+id/readSudokuTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:gravity="end"
+        android:layout_above="@+id/readSudokuTextView"
+        android:layout_alignRight="@+id/gridview"
+        android:layout_alignEnd="@+id/gridview" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="Solved Sudoku"
+        android:textSize="8sp"
         android:id="@+id/solvedSudokuTextView"
+        android:gravity="end"
         android:layout_below="@+id/solvedSudokuTitleTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="32dp" />
+        android:layout_alignRight="@+id/gridview"
+        android:layout_alignEnd="@+id/gridview" />
 
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gridview"
+        android:layout_below="@+id/solvedSudokuTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="9"
+        android:gravity="center" />
 
 
 
