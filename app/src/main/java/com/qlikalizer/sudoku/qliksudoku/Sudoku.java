@@ -22,7 +22,7 @@ public class Sudoku extends AppCompatActivity {
     private Button mSolveSudokuButton;
 
     interface DataChangedListener {
-        void onDataChanged();
+        void onDataChanged(char[][] sudoku);
     }
 
     DataChangedListener mDataChangeListener = null;
@@ -47,9 +47,10 @@ public class Sudoku extends AppCompatActivity {
 
         mDataChangeListener = new DataChangedListener() {
             @Override
-            public void onDataChanged() {
+            public void onDataChanged(char[][] sudoku) {
                 Log.d(TAG, "onDataChanged");
-                mViewAdapter.setSudoku(mSudokuMatrix);
+                mGridView.invalidateViews();
+                mViewAdapter.setSudoku(sudoku);
                 mViewAdapter.notifyDataSetChanged();
             }
         };
@@ -88,11 +89,19 @@ public class Sudoku extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.load_easy:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.easy);
-                mDataChangeListener.onDataChanged();
+                mDataChangeListener.onDataChanged(mSudokuMatrix);
                 return true;
             case R.id.load_medium:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.medium);
-                mDataChangeListener.onDataChanged();
+                mDataChangeListener.onDataChanged(mSudokuMatrix);
+                return true;
+            case R.id.load_hard:
+                mSudokuMatrix = FileReader.readFromFile(this, R.raw.hard);
+                mDataChangeListener.onDataChanged(mSudokuMatrix);
+                return true;
+            case R.id.load_samurai:
+                mSudokuMatrix = FileReader.readFromFile(this, R.raw.samurai);
+                mDataChangeListener.onDataChanged(mSudokuMatrix);
                 return true;
             case R.id.readme:
                 Intent i = new Intent();

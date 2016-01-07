@@ -1,9 +1,6 @@
 package com.qlikalizer.sudoku.qliksudoku;
 
 import android.util.Log;
-import android.widget.GridView;
-
-import com.qlikalizer.sudoku.view.ViewAdapter;
 
 /**
  * Created by admin on 2016-01-03.
@@ -14,39 +11,6 @@ public class Solver {
 
     private static final String WRONG_DIMENSIONS_ERROR =
             "The Sudoku supplied has dimensions larger than 9x9";
-
-    static char[][] solveSudoku(char[][] sudoku) {
-        char[][] solution = new char[9][9];
-        solution = sudoku;
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                if (solution[row][col] < '1' || solution[row][col] > '9') {
-                    //We have a cell missing a number. Add a number if allowed
-                    Log.d(Sudoku.TAG, "Empty cell at [" + row + "," + col + "]");
-                    for (char c = '1'; c <= '9'; c++) {
-                        if (allowedInCol(solution, col, c) && allowedInRow(solution, row, c) &&
-                                allowedInSquare(solution, row, col, c)) {
-                            Log.d(Sudoku.TAG, "Adding " + String.valueOf(c) +
-                                    " at " + "[" + row + "," + col + "]");
-                            solution[row][col] = c;
-                            break;
-                        }
-                        if (col == 8) {
-                            // We have reached the last cell without finding a number that works.
-                            // Call solveDusoku recursively and increment the number to try
-                            mCurrentTriedNumber++;
-                            if (mCurrentTriedNumber == 10) {
-                                mCurrentTriedNumber = 1;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-
-        return solution;
-    }
 
     public static boolean solve(char[][] sudoku, Sudoku.DataChangedListener dataChangeListener) {
 
@@ -59,13 +23,13 @@ public class Solver {
                     if (allowedInCol(sudoku, col, c) && allowedInRow(sudoku, row, c) &&
                             allowedInSquare(sudoku, row, col, c)) {
                         sudoku[row][col] = c;
-                        dataChangeListener.onDataChanged();
+                        dataChangeListener.onDataChanged(sudoku);
 
                         if (solve(sudoku, dataChangeListener)) {
                             return true;
                         } else {
                             sudoku[row][col] = '.';
-                            dataChangeListener.onDataChanged();
+                            dataChangeListener.onDataChanged(sudoku);
                         }
                     }
                 }
