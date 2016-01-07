@@ -7,8 +7,6 @@ import android.util.Log;
  */
 public class Solver {
 
-    private static int mCurrentTriedNumber = 1;
-
     private static final String WRONG_DIMENSIONS_ERROR =
             "The Sudoku supplied has dimensions larger than 9x9";
 

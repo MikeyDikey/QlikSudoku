@@ -1,13 +1,10 @@
 package com.qlikalizer.sudoku.view;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-
-import com.qlikalizer.sudoku.qliksudoku.Sudoku;
 
 /**
  * Created by admin on 2016-01-06.
