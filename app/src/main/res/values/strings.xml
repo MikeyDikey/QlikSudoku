@@ -1,22 +1,39 @@
 <resources>
     <string name="app_name">QlikSudoku</string>
-    <string name="readme_text">Part 1. \n
-        I agree with the author of the Programming assignment. "The assignement can grow almost indefinitely" and I would like to have refactored the code in FileReader to use a utility
+    <string name="readme_text">Part 1.
+        \n
+        I agree with the author of the Programming assignment. "The assignement can grow almost indefinitely". I would like to have refactored the code in FileReader to use a utility
         class like BufferReader and also use division and modulus operators in the Solver class to
-        make the code shorter and more efficient instead of the many for loops. I
-        chose to store the Sudoku in a char matrix (char[][]) as a Sudoku plane basically is a
-        matrix. To chose chars and not ints might seems strange but that was how I started when
-        reading the files and I kept it that way in the end. All for Sudoku examples can be loaded from the menu. I did not
+        make the code shorter and more efficient instead of the many for loops. I chose to store the
+        Sudoku in a char matrix (char[][]) as a Sudoku plane basically is a matrix. To chose chars
+        and not ints might seem strange but that was how I started when reading the files and I
+        kept it that way in the end. All four Sudoku examples can be loaded from the menu. I did not
         implement a picker for a text file from the file system but this can be added on request.\n
 
         \n
         Part 2.
         \n
-        I have written an algorithm that solves the Sudoku games. I tried out some variant using for
-        and while loops but soon cam to the conclusion that it needed to be solved by recursion. I
-        spent quite some time to get the GridView to refresh for every new number that was tried but
-        the algorithm so one could see the algorithm in work in the UI but I could only manage to get
+        I have written an algorithm that solves the Sudoku games. I tried out some variants using for
+        and while loops but soon came to the conclusion that it needed to be solved by recursion. I
+        spent quite some time to get the GridView to refresh for every new number that was tried by
+        the algorithm so one could see the algorithm in work in the UI, but I could only manage to get
         a refresh for the full solution.
+        To classify the level of the Sudoku I was thinking of calculating the blank spaces of the game.
+        But I did then see that level Hard and Samurai had the same amount of blanks. But I noticed that
+        the execution time for the algorithm to solve the Sudokus varied quite a lot. It is not implemented
+        but I would use the amount of recursive calls needed to classify the level of the game.\n
+
+        \n
+        Part 3.
+        \n
+        I did not get a chance to implement part 3 I\'m afraid. I was thinking of distributing numbers
+        randomly on the Sudoku board and then use the solve algorithm to know if it actually was a
+        solvable Sudoku that was created.\n
+
+        \n
+        Part 4.
+        \n
+        If you are using the android application... well then you are looking at it (part 4) :-) .
 
     </string>
 </resources>
