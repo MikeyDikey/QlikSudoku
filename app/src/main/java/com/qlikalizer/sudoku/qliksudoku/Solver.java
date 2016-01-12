@@ -10,8 +10,11 @@ public class Solver {
     private static final String WRONG_DIMENSIONS_ERROR =
             "The Sudoku supplied has dimensions larger than 9x9";
 
-    public static boolean solve(char[][] sudoku, Sudoku.DataChangedListener dataChangeListener) {
+    static int sCalculationDepth;
 
+    public static boolean solve(char[][] sudoku, Sudoku.DataChangedListener dataChangeListener) {
+        sCalculationDepth++;
+        Log.d(Sudoku.TAG, "Setting new Calculation depth: " + sCalculationDepth);
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 if (isNumberOneToNineChar(sudoku[row][col])) {

@@ -48,7 +48,7 @@ public class Sudoku extends AppCompatActivity {
         mDataChangeListener = new DataChangedListener() {
             @Override
             public void onDataChanged(char[][] sudoku) {
-                Log.d(TAG, "onDataChanged");
+                //Log.d(TAG, "onDataChanged");
                 mGridView.invalidateViews();
                 mViewAdapter.setSudoku(sudoku);
                 mViewAdapter.notifyDataSetChanged();
@@ -60,7 +60,9 @@ public class Sudoku extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "Solve Sudoku Button onClick");
+                Solver.sCalculationDepth = 0;
                 Solver.solve(mSudokuMatrix, mDataChangeListener);
+                Log.d(TAG, "Calculation depth: " + Solver.sCalculationDepth);
             }
         });
     }
