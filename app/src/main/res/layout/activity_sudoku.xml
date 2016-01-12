@@ -10,8 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.qlikalizer.sudoku.qliksudoku.Sudoku">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Level:"
+        android:id="@+id/levelTextView" />
+
    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridview"
+        android:layout_below="@+id/levelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numColumns="9"

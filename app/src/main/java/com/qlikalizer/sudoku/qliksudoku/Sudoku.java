@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.qlikalizer.sudoku.view.ViewAdapter;
 
@@ -28,12 +29,17 @@ public class Sudoku extends AppCompatActivity {
     DataChangedListener mDataChangeListener = null;
 
     GridView mGridView;
+
     ViewAdapter mViewAdapter;
+
+    TextView mLevelTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
+
+        mLevelTextView = (TextView) findViewById(R.id.levelTextView);
 
         // Load Easy Sudoku as the default Sudoku board
         mSudokuMatrix = FileReader.readFromFile(this, R.raw.easy);
@@ -62,6 +68,7 @@ public class Sudoku extends AppCompatActivity {
                 Log.d(TAG, "Solve Sudoku Button onClick");
                 Solver.sCalculationDepth = 0;
                 Solver.solve(mSudokuMatrix, mDataChangeListener);
+                mLevelTextView.setText("Level: " + Solver.getLevel(Solver.sCalculationDepth));
                 Log.d(TAG, "Calculation depth: " + Solver.sCalculationDepth);
             }
         });
@@ -92,18 +99,22 @@ public class Sudoku extends AppCompatActivity {
             case R.id.load_easy:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.easy);
                 mDataChangeListener.onDataChanged(mSudokuMatrix);
+                resetLevelTextView();
                 return true;
             case R.id.load_medium:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.medium);
                 mDataChangeListener.onDataChanged(mSudokuMatrix);
+                resetLevelTextView();
                 return true;
             case R.id.load_hard:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.hard);
                 mDataChangeListener.onDataChanged(mSudokuMatrix);
+                resetLevelTextView();
                 return true;
             case R.id.load_samurai:
                 mSudokuMatrix = FileReader.readFromFile(this, R.raw.samurai);
                 mDataChangeListener.onDataChanged(mSudokuMatrix);
+                resetLevelTextView();
                 return true;
             case R.id.readme:
                 Intent i = new Intent();
@@ -113,5 +124,9 @@ public class Sudoku extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void resetLevelTextView() {
+        mLevelTextView.setText("Level:");
     }
 }

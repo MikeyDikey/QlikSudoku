@@ -206,5 +206,21 @@ public class Solver {
         return c >= '1' && c <= '9';
     }
 
+    static String getLevel(int calculationDepth) {
+        String levelString;
+
+        if (calculationDepth < 1500) {
+            levelString = "Easy";
+        } else if (calculationDepth < 5000) {
+            levelString = "Medium";
+        } else if (calculationDepth < 40000) {
+            levelString = "Hard";
+        } else {
+            levelString = "Samurai";
+        }
+
+        return levelString;
+    }
+
 }
 
