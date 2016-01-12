@@ -42,7 +42,7 @@ public class ViewAdapter extends BaseAdapter {
 
         int row = position / 9;
         int col = position % 9;
-        //Log.d(Sudoku.TAG, "Setting text from position: " + row + "," + col);
+
         button.setText(String.valueOf(mSudoku[row][col]));
         return button;
     }

@@ -23,7 +23,6 @@ public class FileReader {
         char[][] sudokuMatrix = new char[9][9];
         InputStream is;
 
-        //is  = context.getResources().openRawResource(R.raw.easy);
         try {
             is  = context.getResources().openRawResource(resourceId);
         } catch (Resources.NotFoundException e) {
@@ -40,7 +39,6 @@ public class FileReader {
     }
 
     private static char getNextValidCharacter(InputStream is) {
-        //Log.d(Sudoku.TAG, "getNextValidCharacter");
         char ch;
 
         try {
@@ -60,11 +58,8 @@ public class FileReader {
     static String printSudoku(char[][] sudoku) {
         StringBuffer buffer = new StringBuffer();
         Log.d(Sudoku.TAG, "Printing sudoku \n");
-        //buffer.append("Printing sudoku \n");
         for (int k = 0; k < 9; k++) {
             for (int i = 0; i < 9; i++) {
-                Log.d(Sudoku.TAG, "k = " + k + " i = " + i + " Matrix on [i,k] = " +
-                        String.valueOf(sudoku[k][i]));
                 buffer.append(sudoku[k][i]);
             }
             buffer.append("\n");
